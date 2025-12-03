@@ -11,7 +11,7 @@ export const PROFILE: ProfileData = {
 
 My passion lies in Applied AI, NLP, and Multimodal technologies. I enjoy bridging the gap between advanced models and real-world applications, building robust systems that solve actual problems.
 
-I am actively seeking AI Engineer / LLMOps Internships.`,
+I am actively seeking LLM-relevant internships.`,
 };
 
 export const TECHNICAL_FOCUS: ResearchInterest[] = [
