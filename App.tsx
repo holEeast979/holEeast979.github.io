@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ContentSection from './components/ContentSection';
-import ResearchAssistant from './components/ResearchAssistant';
-import { PROFILE, PUBLICATIONS, NEWS, RESEARCH_INTERESTS } from './constants';
-import { IconExternalLink, IconFileText } from './components/Icons';
+import { PROFILE, PROJECTS, EDUCATION, HONORS, RESEARCH_INTERESTS, TECH_STACK } from './constants';
+import { IconAward } from './components/Icons';
 
 function App() {
   const [activeTab, setActiveTab] = useState('about');
@@ -12,55 +11,63 @@ function App() {
     switch (activeTab) {
       case 'about':
         return (
-          <ContentSection title="Biography">
+          <ContentSection title="About Me">
             <div className="prose prose-stone max-w-none text-academic-800">
               <p className="mb-6 text-lg font-serif leading-relaxed">
                 {PROFILE.bio}
               </p>
               
               <h3 className="font-serif text-lg font-bold mt-8 mb-4 text-academic-900">Research Interests</h3>
-              <ul className="list-disc pl-5 space-y-1 mb-6">
+              <ul className="list-disc pl-5 space-y-2 mb-6">
                 {RESEARCH_INTERESTS.map(interest => (
-                  <li key={interest.id}>{interest.topic}</li>
+                  <li key={interest.id} className="text-academic-700">{interest.topic}</li>
                 ))}
               </ul>
+
+              <h3 className="font-serif text-lg font-bold mt-8 mb-4 text-academic-900">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {TECH_STACK.map((tech, idx) => (
+                  <img 
+                    key={idx} 
+                    src={tech.badge}
+                    alt={tech.name}
+                    className="h-7"
+                  />
+                ))}
+              </div>
             </div>
           </ContentSection>
         );
 
-      case 'publications':
+      case 'projects':
         return (
-          <ContentSection title="Selected Publications">
+          <ContentSection title="Projects">
              <div className="space-y-8">
-               {PUBLICATIONS.map(pub => (
-                 <div key={pub.id} className="group">
-                   <h3 className="font-serif text-lg font-bold text-academic-900 mb-1 group-hover:text-link transition-colors">
-                     {pub.title}
-                   </h3>
-                   <div className="text-academic-600 mb-1">
-                     {pub.authors.map((author, idx) => (
-                       <span key={idx} className={author.includes(PROFILE.name.split(' ').pop() || '') ? "font-semibold text-academic-900" : ""}>
-                         {author}{idx < pub.authors.length - 1 ? ", " : ""}
+               {PROJECTS.map((project, idx) => (
+                 <div key={project.id} className="group border border-academic-200 rounded-lg p-6 hover:border-academic-400 transition-colors">
+                   <div className="flex items-start justify-between mb-2">
+                     <h3 className="font-serif text-lg font-bold text-academic-900">
+                       {idx === 0 && <span className="text-xs bg-link text-white px-2 py-0.5 rounded mr-2">Featured</span>}
+                       {project.title}
+                     </h3>
+                   </div>
+                   <div className="flex flex-wrap gap-2 mb-3">
+                     {project.tags.map((tag, tagIdx) => (
+                       <span key={tagIdx} className="text-xs px-2 py-0.5 bg-academic-100 text-academic-600 rounded">
+                         {tag}
                        </span>
                      ))}
                    </div>
-                   <div className="text-academic-500 italic mb-2">
-                     {pub.venue}, {pub.year}
-                   </div>
-                   <p className="text-sm text-academic-500 mb-3 leading-relaxed text-justify">
-                     {pub.abstract}
+                   <p className="text-academic-600 mb-4">
+                     {project.description}
                    </p>
-                   <div className="flex gap-4 text-sm font-medium">
-                     {pub.pdfLink && (
-                       <a href={pub.pdfLink} className="flex items-center gap-1 text-link hover:underline decoration-dotted underline-offset-2">
-                         <IconFileText className="w-3 h-3" /> PDF
-                       </a>
-                     )}
-                     {pub.codeLink && (
-                       <a href={pub.codeLink} className="flex items-center gap-1 text-link hover:underline decoration-dotted underline-offset-2">
-                         <IconExternalLink className="w-3 h-3" /> Code
-                       </a>
-                     )}
+                   <div className="space-y-2">
+                     <p className="text-sm font-medium text-academic-700">Key Highlights:</p>
+                     <ul className="list-disc pl-5 space-y-1">
+                       {project.highlights.map((highlight, hIdx) => (
+                         <li key={hIdx} className="text-sm text-academic-600">{highlight}</li>
+                       ))}
+                     </ul>
                    </div>
                  </div>
                ))}
@@ -68,27 +75,50 @@ function App() {
           </ContentSection>
         );
 
-      case 'news':
+      case 'education':
         return (
-          <ContentSection title="News & Updates">
-            <div className="border-l-2 border-academic-200 pl-6 space-y-8">
-              {NEWS.map(item => (
-                <div key={item.id} className="relative">
-                  <span className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-academic-300 border-2 border-white"></span>
-                  <div className="text-sm font-bold text-academic-500 mb-1 uppercase tracking-wide">
-                    {item.date}
+          <ContentSection title="Education & Honors">
+            <div className="mb-10">
+              <h3 className="font-serif text-lg font-bold mb-6 text-academic-900">Education</h3>
+              <div className="border-l-2 border-academic-300 pl-6 space-y-6">
+                {EDUCATION.map(item => (
+                  <div key={item.id} className="relative">
+                    <span className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-academic-400 border-2 border-white"></span>
+                    <div className="text-sm font-bold text-link mb-1">
+                      {item.period}
+                    </div>
+                    <div className="font-serif font-bold text-academic-900">
+                      {item.title}
+                    </div>
+                    <div className="text-academic-600">
+                      {item.institution}
+                    </div>
+                    {item.detail && (
+                      <div className="text-sm text-academic-500 mt-1">
+                        {item.detail}
+                      </div>
+                    )}
                   </div>
-                  <div className="text-academic-800">
-                    {item.content}
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-lg font-bold mb-6 text-academic-900 flex items-center gap-2">
+                <IconAward className="w-5 h-5 text-yellow-500" />
+                Honors & Awards
+              </h3>
+              <div className="space-y-3">
+                {HONORS.map(honor => (
+                  <div key={honor.id} className="flex items-center justify-between py-2 border-b border-academic-100">
+                    <span className="text-academic-800 font-medium">{honor.title}</span>
+                    <span className="text-sm text-academic-500">{honor.year}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </ContentSection>
         );
-
-      case 'assistant':
-        return <ResearchAssistant />;
 
       default:
         return null;

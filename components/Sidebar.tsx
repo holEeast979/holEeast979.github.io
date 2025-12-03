@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PROFILE } from '../constants';
-import { IconMail, IconMapPin, IconGithub, IconFileText } from './Icons';
+import { IconMail, IconGithub, IconLinkedin, IconDownload } from './Icons';
 
 interface SidebarProps {
   activeTab: string;
@@ -8,30 +8,29 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+  const [showResumeMenu, setShowResumeMenu] = useState(false);
+  
   const navItems = [
     { id: 'about', label: 'About' },
-    { id: 'publications', label: 'Publications' },
-    { id: 'news', label: 'News' },
-    { id: 'assistant', label: 'AI Assistant' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' },
   ];
 
   return (
     <aside className="w-full md:w-64 lg:w-72 flex-shrink-0 bg-academic-50 md:min-h-screen border-b md:border-b-0 md:border-r border-academic-200 p-6 md:p-8 flex flex-col">
       <div className="mb-8">
-        <div className="w-32 h-32 bg-academic-200 mb-4 overflow-hidden rounded-sm grayscale">
-             {/* Placeholder for Profile Image - Grayscale for academic look */}
+        <div className="w-32 h-32 bg-academic-200 mb-4 overflow-hidden rounded-sm">
              <img 
-              src="https://picsum.photos/300/300" 
-              alt="Profile" 
-              className="w-full h-full object-cover mix-blend-multiply"
+              src="https://avatars.githubusercontent.com/u/115168614?v=4" 
+              alt="Haodong Zhang" 
+              className="w-full h-full object-cover"
             />
         </div>
         <h1 className="font-serif text-xl font-bold text-academic-900 leading-tight mb-2">
           {PROFILE.name}
         </h1>
         <p className="text-sm text-academic-600 mb-4 leading-relaxed">
-          {PROFILE.title}<br />
-          {PROFILE.affiliation}
+          {PROFILE.title}
         </p>
 
         <div className="space-y-2 text-sm text-academic-600">
@@ -41,23 +40,19 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
               Email
             </a>
           </div>
-          <div className="flex items-start gap-2">
-            <IconMapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-            <span>{PROFILE.location}</span>
-          </div>
           {PROFILE.github && (
             <div className="flex items-center gap-2">
               <IconGithub className="w-4 h-4" />
               <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
-                Github
+                GitHub
               </a>
             </div>
           )}
-          {PROFILE.scholar && (
+          {PROFILE.linkedin && (
             <div className="flex items-center gap-2">
-              <IconFileText className="w-4 h-4" />
-              <a href={PROFILE.scholar} target="_blank" rel="noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
-                Google Scholar
+              <IconLinkedin className="w-4 h-4" />
+              <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
+                LinkedIn
               </a>
             </div>
           )}
@@ -81,10 +76,41 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
             </li>
           ))}
         </ul>
+        
+        {/* Resume Download */}
+        <div className="mt-4 relative">
+          <button
+            onClick={() => setShowResumeMenu(!showResumeMenu)}
+            className="w-full flex items-center gap-2 px-3 py-2 text-sm font-medium text-academic-600 hover:text-academic-900 border border-academic-300 rounded-md hover:bg-academic-100 transition-colors"
+          >
+            <IconDownload className="w-4 h-4" />
+            Resume / 简历
+          </button>
+          {showResumeMenu && (
+            <div className="absolute left-0 right-0 mt-1 bg-white border border-academic-200 rounded-md shadow-lg z-10">
+              <a
+                href="/resume-english.pdf"
+                download
+                className="block px-3 py-2 text-sm text-academic-600 hover:bg-academic-50 hover:text-academic-900"
+                onClick={() => setShowResumeMenu(false)}
+              >
+                📄 English Version
+              </a>
+              <a
+                href="/resume-chinese.pdf"
+                download
+                className="block px-3 py-2 text-sm text-academic-600 hover:bg-academic-50 hover:text-academic-900"
+                onClick={() => setShowResumeMenu(false)}
+              >
+                📄 中文版本
+              </a>
+            </div>
+          )}
+        </div>
       </nav>
 
       <div className="mt-8 text-xs text-academic-400 font-sans">
-        &copy; {new Date().getFullYear()} {PROFILE.name}.<br />
+        &copy; 2025 Haodong Zhang.<br />
         Built with React & Tailwind.
       </div>
     </aside>

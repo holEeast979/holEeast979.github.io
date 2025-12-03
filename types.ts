@@ -1,18 +1,24 @@
-export interface Publication {
+export interface Project {
   id: string;
   title: string;
-  authors: string[];
-  venue: string;
-  year: number;
-  pdfLink?: string;
-  codeLink?: string;
-  abstract: string;
+  tags: string[];
+  description: string;
+  highlights: string[];
+  link?: string;
 }
 
-export interface NewsItem {
+export interface EducationItem {
   id: string;
-  date: string;
-  content: string;
+  period: string;
+  title: string;
+  institution: string;
+  detail?: string;
+}
+
+export interface HonorItem {
+  id: string;
+  title: string;
+  year: string;
 }
 
 export interface ResearchInterest {
@@ -26,8 +32,6 @@ export interface ProfileData {
   affiliation: string;
   email: string;
   github?: string;
-  scholar?: string;
-  twitter?: string;
+  linkedin?: string;
   bio: string;
-  location: string;
 }
