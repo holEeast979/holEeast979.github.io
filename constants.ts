@@ -1,19 +1,23 @@
 import { ProfileData, Project, EducationItem, HonorItem, ResearchInterest } from './types';
 
 export const PROFILE: ProfileData = {
-  name: "Haodong Zhang (HolEast)",
+  name: "Haodong Zhang (张浩东)",
   title: "Incoming MSc Student @ CUHK | AI Engineer",
   affiliation: "The Chinese University of Hong Kong",
-  email: "zhanghaodong0902@gmail.com",
+  email: "haodong.zhang.hk@gmail.com",
   github: "https://github.com/holEeast979",
-  linkedin: "https://www.linkedin.com/in/haodong-zhang-0a78b0311/",
-  bio: `Hi, I'm Haodong Zhang. I am a final-year Software Engineering undergraduate at Jinan University and an incoming MSc student in Artificial Intelligence at The Chinese University of Hong Kong (CUHK) (Fall 2026). My passion lies in Applied AI and Edge-side Inference Acceleration.`,
+  linkedin: "https://www.linkedin.com/in/holeeast",
+  bio: `Hi, I'm Haodong Zhang. I am a final-year B.Eng student in Software Engineering at Jinan University and an incoming MSc student in Artificial Intelligence at CUHK (Fall 2026).
+
+My passion lies in Applied AI, NLP, and Multimodal technologies. I enjoy bridging the gap between advanced models and real-world applications, building robust systems that solve actual problems.
+
+I am actively seeking AI Engineer / LLMOps Internships.`,
 };
 
-export const RESEARCH_INTERESTS: ResearchInterest[] = [
-  { id: '1', topic: 'Edge AI: Efficient LLM inference on Jetson/Raspberry Pi' },
-  { id: '2', topic: 'LLM Applications: RAG pipelines and Multi-Agent systems' },
-  { id: '3', topic: 'System Engineering: Full-stack deployment from model to backend' },
+export const TECHNICAL_FOCUS: ResearchInterest[] = [
+  { id: '1', topic: 'LLM Application Development: Building RAG pipelines, Multi-Agent systems, and integrating LLMs into full-stack applications.' },
+  { id: '2', topic: 'Multimodal & NLP: Leveraging Vision-Language Models for complex data understanding and processing.' },
+  { id: '3', topic: 'Model Optimization: Experimenting with edge-side inference acceleration and quantization techniques.' },
 ];
 
 export const TECH_STACK: { name: string; badge: string }[] = [
@@ -25,11 +29,20 @@ export const TECH_STACK: { name: string; badge: string }[] = [
   { name: 'Docker', badge: 'https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white' },
   { name: 'Linux', badge: 'https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black' },
   { name: 'Git', badge: 'https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white' },
-  { name: 'FastAPI', badge: 'https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white' },
-  { name: 'React', badge: 'https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black' },
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    id: 'p0',
+    title: "Enterprise Multi-Agent Orchestration Platform",
+    tags: ["Internship", "LLMOps", "Platform Engineering", "RocketMQ"],
+    description: "Internship @ Shifangronghai Technology | Sept. 2025 - Dec. 2025\n\nBuilt the LLMOps infrastructure for an enterprise-level Agent orchestration platform, supporting high-concurrency downstream services.",
+    highlights: [
+      "Evaluation Pipeline: Containerized high-concurrency evaluation suite via Docker/RocketMQ, establishing TPS & Latency baselines.",
+      "Full-Stack Observability: Integrated Langfuse into LangGraph, reducing error attribution time for multi-agent systems by 50%+.",
+      "System Monitoring: Built real-time Prometheus/Grafana dashboards for millisecond-level anomaly alerting."
+    ]
+  },
   {
     id: 'p1',
     title: "Edge-LMM Inference Acceleration Research",
@@ -51,17 +64,7 @@ export const PROJECTS: Project[] = [
       "Implemented re-ranking strategy, boosting recall rate by 3-5%."
     ]
   },
-  {
-    id: 'p3',
-    title: "Kidney Stone Prediction System",
-    tags: ["Machine Learning", "Data Science"],
-    description: "End-to-end medical prediction analytics project based on ML classifiers.",
-    highlights: [
-      "Full pipeline from data preprocessing to model deployment.",
-      "Comparative analysis of multiple classification algorithms."
-    ]
-  }
-];
+  ];
 
 export const EDUCATION: EducationItem[] = [
   { 
@@ -82,6 +85,6 @@ export const EDUCATION: EducationItem[] = [
 
 export const HONORS: HonorItem[] = [
   { id: 'h1', title: "National Scholarship (Top 1%)", year: "2025" },
-  { id: 'h2', title: "APMCM Modeling Contest Winner", year: "2025" },
+  { id: 'h2', title: "APMCM Modeling Contest Winner Prize", year: "2025" },
   { id: 'h3', title: "Blue Bridge Cup Provincial 2nd Prize", year: "2024" },
 ];

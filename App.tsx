@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ContentSection from './components/ContentSection';
-import { PROFILE, PROJECTS, EDUCATION, HONORS, RESEARCH_INTERESTS, TECH_STACK } from './constants';
+import { PROFILE, PROJECTS, EDUCATION, HONORS, TECHNICAL_FOCUS, TECH_STACK } from './constants';
 import { IconAward } from './components/Icons';
 
 function App() {
@@ -13,14 +13,14 @@ function App() {
         return (
           <ContentSection title="About Me">
             <div className="prose prose-stone max-w-none text-academic-800">
-              <p className="mb-6 text-lg font-serif leading-relaxed">
+              <p className="mb-6 text-lg font-serif leading-relaxed whitespace-pre-line">
                 {PROFILE.bio}
               </p>
               
-              <h3 className="font-serif text-lg font-bold mt-8 mb-4 text-academic-900">Research Interests</h3>
+              <h3 className="font-serif text-lg font-bold mt-8 mb-4 text-academic-900">Technical Focus</h3>
               <ul className="list-disc pl-5 space-y-2 mb-6">
-                {RESEARCH_INTERESTS.map(interest => (
-                  <li key={interest.id} className="text-academic-700">{interest.topic}</li>
+                {TECHNICAL_FOCUS.map(item => (
+                  <li key={item.id} className="text-academic-700">{item.topic}</li>
                 ))}
               </ul>
 

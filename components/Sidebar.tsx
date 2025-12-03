@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
       <div className="mb-8">
         <div className="w-32 h-32 bg-academic-200 mb-4 overflow-hidden rounded-sm">
              <img 
-              src="https://avatars.githubusercontent.com/u/115168614?v=4" 
+              src="/avatar.jpg" 
               alt="Haodong Zhang" 
               className="w-full h-full object-cover"
             />
@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           {PROFILE.github && (
             <div className="flex items-center gap-2">
               <IconGithub className="w-4 h-4" />
-              <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
+              <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
                 GitHub
               </a>
             </div>
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           {PROFILE.linkedin && (
             <div className="flex items-center gap-2">
               <IconLinkedin className="w-4 h-4" />
-              <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
+              <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-link underline decoration-dotted underline-offset-2">
                 LinkedIn
               </a>
             </div>
